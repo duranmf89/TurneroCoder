@@ -1,0 +1,99 @@
+Descripcion de las Tablas de la Base de Datos del Turnero para SQL (Workbench).
+
+
+------------------------------------------------------------------------------------------------
+
+1 - Tabla: Usuarios ('U')
+    Descripción: Almacena información sobre los usuarios del sistema.
+
+Campos:
+- id_usuario (PK, int): Identificador único del usuario.
+- nombre (varchar): Nombre del usuario.
+- correo (varchar): Correo electrónico del usuario.
+- contrasena (varchar): Contraseña del usuario.
+------------------------------------------------------------------------------------------------
+
+2 - Tabla: Deportes ('R')
+    Descripción: Contiene información sobre los deportes disponibles.
+
+Campos:
+- id_deporte (PK, int): Identificador único del deporte.
+- nombre_deporte (varchar): Nombre del deporte.
+
+------------------------------------------------------------------------------------------------
+
+3 - Tabla: Canchas ('C')
+    Descripción: Almacena detalles sobre las canchas disponibles.
+
+Campos:
+- id_cancha (PK, int): Identificador único de la cancha.
+- id_deporte (FK, int): Clave foránea que referencia la tabla Deportes.
+- nombre_cancha (varchar): Nombre de la cancha.
+- hora_semana (time): Hora de disponibilidad durante la semana.
+- hora_fin_semana (time): Hora de fin de disponibilidad durante el fin de semana.
+- disponible (tinyint): Indica si la cancha está disponible.
+- dia_semana (varchar): Día de la semana.
+
+------------------------------------------------------------------------------------------------
+
+4 - Tabla: Estados_Reservas ('ER')
+    Descripción: Contiene información sobre los estados de las reservas.
+
+Campos:
+- id_estado (PK, int): Identificador único del estado.
+- nombre_estado (varchar): Nombre del estado.
+- descripcion (varchar): Descripción del estado.
+
+------------------------------------------------------------------------------------------------
+
+5 - Tabla: Reservas ('R')
+    Descripción: Almacena información sobre las reservas realizadas.
+
+Campos:
+- id_reserva (PK, int): Identificador único de la reserva.
+- id_usuario (FK, int): Clave foránea que referencia la tabla Usuarios.
+- id_cancha (FK, int): Clave foránea que referencia la tabla Canchas.
+- id_estado (FK, int): Clave foránea que referencia la tabla Estados_Reservas.
+- fecha (date): Fecha de la reserva.
+- hora_semana (time): Hora de la reserva durante la semana.
+- hora_fin_semana (time): Hora de la reserva durante el fin de semana.
+- dia_semana (varchar): Día de la semana de la reserva.
+- id_usuario_reservante (FK, int): Clave foránea que referencia la tabla Usuarios.
+- id_usuario_aceptante (FK, int): Clave foránea que referencia la tabla Usuarios.
+
+------------------------------------------------------------------------------------------------
+
+6 - Tabla: Equipos ('E')
+    Descripción: Almacena información sobre los equipos.
+
+Campos:
+- id_equipo (PK, int): Identificador único del equipo.
+- nombre_equipo (varchar): Nombre del equipo.
+- avatar (varchar): Avatar del equipo.
+
+------------------------------------------------------------------------------------------------
+
+7 - Tabla: Usuarios_Equipos ('UE')
+    Descripción: Relaciona usuarios con equipos.
+
+Campos:
+- id_usuario_equipo (PK, int): Identificador único de la relación.
+- id_usuario (FK, int): Clave foránea que referencia la tabla Usuarios.
+- id_equipo (FK, int): Clave foránea que referencia la tabla Equipos.
+
+------------------------------------------------------------------------------------------------
+
+8 - Tabla: Reservas_Historial ('RH')
+    Descripción: Guarda el historial de las reservas.
+
+Campos:
+- id_historial (PK, int): Identificador único del historial.
+- id_reserva (FK, int): Clave foránea que referencia la tabla Reservas.
+- id_usuario_reservante (FK, int): Clave foránea que referencia la tabla Usuarios.
+- id_usuario_aceptante (FK, int): Clave foránea que referencia la tabla Usuarios.
+- id_cancha (FK, int): Clave foránea que referencia la tabla Canchas.
+- id_estado (FK, int): Clave foránea que referencia la tabla Estados_Reservas.
+- fecha (date): Fecha del historial.
+- hora_semana (time): Hora del historial durante la semana.
+
+------------------------------------------------------------------------------------------------
