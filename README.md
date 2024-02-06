@@ -1,3 +1,5 @@
+AGREGADAS
+
 Ideas para completar las 15 tablas de minimo que pide el proyecto final: 
 
 1- Tabla de Reseñas:
