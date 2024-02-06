@@ -97,3 +97,80 @@ Campos:
 - hora_semana (time): Hora del historial durante la semana.
 
 ------------------------------------------------------------------------------------------------
+
+9 - Tabla: Reseñas ('Rev')
+    Descripción: Almacena reseñas o comentarios realizados por los usuarios sobre las instalaciones deportivas.
+
+Campos:
+id_resena (PK, int): Identificador único de la reseña.
+id_usuario (FK, int): Clave foránea que referencia la tabla Usuarios, identifica al usuario que realiza la reseña.
+id_cancha (FK, int): Clave foránea que referencia la tabla Canchas, identifica la cancha sobre la cual se realiza la reseña.
+comentario (text): Comentario o reseña del usuario.
+calificacion (int): Puntuación o calificación dada por el usuario.
+
+------------------------------------------------------------------------------------------------
+
+10 - Tabla: Pagos ('Pago')
+     Descripción: Registra la información de pagos relacionados con reservas, membresías o cualquier transacción financiera asociada al sistema.
+
+Campos:
+id_pago (PK, int): Identificador único del pago.
+id_usuario (FK, int): Clave foránea que referencia la tabla Usuarios, identifica al usuario asociado al pago.
+monto (decimal): Monto del pago realizado.
+fecha_pago (date): Fecha en la que se realizó el pago.
+descripcion (varchar): Descripción o motivo del pago.
+
+------------------------------------------------------------------------------------------------
+
+11 - Tabla: Equipamiento ('Equip')
+     Descripción: Gestiona información sobre el equipamiento disponible en las instalaciones deportivas.
+
+Campos:
+id_equipamiento (PK, int): Identificador único del equipamiento.
+nombre (varchar): Nombre o descripción del equipamiento.
+cantidad_disponible (int): Cantidad disponible del equipamiento.
+
+------------------------------------------------------------------------------------------------
+
+12 - Tabla: Notificaciones ('Notif')
+     Descripción: Registra notificaciones enviadas a los usuarios, como recordatorios de reservas o cambios en el estado de las mismas.
+
+Campos:
+id_notificacion (PK, int): Identificador único de la notificación.
+id_usuario (FK, int): Clave foránea que referencia la tabla Usuarios, identifica al usuario al que se envía la notificación.
+mensaje (text): Mensaje de la notificación.
+fecha_envio (datetime): Fecha y hora en la que se envió la notificación.
+
+------------------------------------------------------------------------------------------------
+
+13 - Tabla: Tarifas ('Tarifa')
+     Descripción: Contiene información sobre tarifas asociadas a la reserva de canchas o servicios adicionales.
+
+Campos:
+id_tarifa (PK, int): Identificador único de la tarifa.
+concepto (varchar): Concepto o descripción de la tarifa.
+monto (decimal): Monto asociado a la tarifa.
+
+------------------------------------------------------------------------------------------------
+
+14 - Tabla: Eventos ('Evento')
+     Descripción: Gestiona eventos especiales que pueden afectar la disponibilidad de las instalaciones deportivas.
+
+Campos:
+id_evento (PK, int): Identificador único del evento.
+nombre_evento (varchar): Nombre o descripción del evento.
+fecha_inicio (datetime): Fecha y hora de inicio del evento.
+fecha_fin (datetime): Fecha y hora de fin del evento.
+
+------------------------------------------------------------------------------------------------
+
+15 - Tabla: Registros_Acceso ('Acceso')
+     Descripción: Registra el acceso de los usuarios a la plataforma y actividades relacionadas con la seguridad.
+
+Campos:
+id_registro_acceso (PK, int): Identificador único del registro de acceso.
+id_usuario (FK, int): Clave foránea que referencia la tabla Usuarios, identifica al usuario que accede.
+fecha_hora_acceso (datetime): Fecha y hora en la que se realizó el acceso.
+tipo_acceso (varchar): Tipo de acceso, como inicio de sesión, cambio de contraseña, etc.
+
+------------------------------------------------------------------------------------------------
