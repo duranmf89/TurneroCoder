@@ -15,9 +15,6 @@ CREATE TABLE IF NOT EXISTS Usuarios (
     id_evento_suscrito INT
 );
 
--- Agregar clave foránea a la tabla Usuarios
-ALTER TABLE Usuarios ADD FOREIGN KEY (id_evento_suscrito) REFERENCES Eventos(id_evento);
-
 -- Crear tabla Deportes
 DROP TABLE IF EXISTS Deportes;
 CREATE TABLE IF NOT EXISTS Deportes (
@@ -36,9 +33,6 @@ CREATE TABLE IF NOT EXISTS Canchas (
     dia_semana VARCHAR(10),
     disponible BOOLEAN
 );
-
--- Agregar clave foránea a la tabla Canchas
-ALTER TABLE Canchas ADD FOREIGN KEY (id_deporte) REFERENCES Deportes(id_deporte);
 
 -- Crear tabla Estados Reservas
 DROP TABLE IF EXISTS Estados_Reservas;
@@ -63,13 +57,6 @@ CREATE TABLE IF NOT EXISTS Reservas (
     dia_semana VARCHAR(10)
 );
 
--- Agregar claves foráneas a la tabla Reservas
-ALTER TABLE Reservas ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
-ALTER TABLE Reservas ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha);
-ALTER TABLE Reservas ADD FOREIGN KEY (id_estado) REFERENCES Estados_Reservas(id_estado);
-ALTER TABLE Reservas ADD FOREIGN KEY (id_usuario_reservante) REFERENCES Usuarios(id_usuario);
-ALTER TABLE Reservas ADD FOREIGN KEY (id_usuario_aceptante) REFERENCES Usuarios(id_usuario);
-
 -- Crear tabla Equipos
 DROP TABLE IF EXISTS Equipos;
 CREATE TABLE IF NOT EXISTS Equipos (
@@ -86,10 +73,6 @@ CREATE TABLE IF NOT EXISTS Usuarios_Equipos (
     id_equipo INT NOT NULL
 );
 
--- Agregar claves foráneas a la tabla Usuarios_Equipos
-ALTER TABLE Usuarios_Equipos ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
-ALTER TABLE Usuarios_Equipos ADD FOREIGN KEY (id_equipo) REFERENCES Equipos(id_equipo);
-
 -- Crear tabla para el historial de reservas
 DROP TABLE IF EXISTS Reservas_Historial;
 CREATE TABLE IF NOT EXISTS Reservas_Historial (
@@ -103,13 +86,6 @@ CREATE TABLE IF NOT EXISTS Reservas_Historial (
     id_estado INT NOT NULL
 );
 
--- Agregar claves foráneas a la tabla Reservas_Historial
-ALTER TABLE Reservas_Historial ADD FOREIGN KEY (id_reserva) REFERENCES Reservas(id_reserva);
-ALTER TABLE Reservas_Historial ADD FOREIGN KEY (id_usuario_reservante) REFERENCES Usuarios(id_usuario);
-ALTER TABLE Reservas_Historial ADD FOREIGN KEY (id_usuario_aceptante) REFERENCES Usuarios(id_usuario);
-ALTER TABLE Reservas_Historial ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha);
-ALTER TABLE Reservas_Historial ADD FOREIGN KEY (id_estado) REFERENCES Estados_Reservas(id_estado);
-
 -- Crear tabla Reviews en lugar de Reseñas
 DROP TABLE IF EXISTS Reviews;
 CREATE TABLE IF NOT EXISTS Reviews (
@@ -121,10 +97,6 @@ CREATE TABLE IF NOT EXISTS Reviews (
     comentario TEXT
 );
 
--- Agregar claves foráneas a la tabla Reviews
-ALTER TABLE Reviews ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
-ALTER TABLE Reviews ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha);
-
 -- Crear tabla Pagos
 DROP TABLE IF EXISTS Pagos;
 CREATE TABLE IF NOT EXISTS Pagos (
@@ -134,9 +106,6 @@ CREATE TABLE IF NOT EXISTS Pagos (
     fecha DATE
 );
 
--- Agregar clave foránea a la tabla Pagos
-ALTER TABLE Pagos ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
-
 -- Crear tabla Equipamiento
 DROP TABLE IF EXISTS Equipamiento;
 CREATE TABLE IF NOT EXISTS Equipamiento (
@@ -144,9 +113,6 @@ CREATE TABLE IF NOT EXISTS Equipamiento (
     nombre_equipo VARCHAR(255) NOT NULL,
     id_cancha INT NOT NULL
 );
-
--- Agregar clave foránea a la tabla Equipamiento
-ALTER TABLE Equipamiento ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha);
 
 -- Crear tabla Notificaciones
 DROP TABLE IF EXISTS Notificaciones;
@@ -157,9 +123,6 @@ CREATE TABLE IF NOT EXISTS Notificaciones (
     fecha DATE
 );
 
--- Agregar clave foránea a la tabla Notificaciones
-ALTER TABLE Notificaciones ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
-
 -- Crear tabla Tarifas
 DROP TABLE IF EXISTS Tarifas;
 CREATE TABLE IF NOT EXISTS Tarifas (
@@ -167,9 +130,6 @@ CREATE TABLE IF NOT EXISTS Tarifas (
     id_cancha INT NOT NULL,
     monto DECIMAL(10, 2)
 );
-
--- Agregar clave foránea a la tabla Tarifas
-ALTER TABLE Tarifas ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha);
 
 -- Crear tabla Eventos
 DROP TABLE IF EXISTS  Eventos;
@@ -187,7 +147,27 @@ CREATE TABLE IF NOT EXISTS Registros_Acceso (
     fecha_hora TIMESTAMP
 );
 
--- Agregar clave foránea a la tabla Registros_Acceso
+-- Agregar claves foráneas a las tablas que las requieran
+ALTER TABLE Usuarios ADD FOREIGN KEY (id_evento_suscrito) REFERENCES Eventos(id_evento);
+ALTER TABLE Canchas ADD FOREIGN KEY (id_deporte) REFERENCES Deportes(id_deporte);
+ALTER TABLE Reservas ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
+ALTER TABLE Reservas ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha);
+ALTER TABLE Reservas ADD FOREIGN KEY (id_estado) REFERENCES Estados_Reservas(id_estado);
+ALTER TABLE Reservas ADD FOREIGN KEY (id_usuario_reservante) REFERENCES Usuarios(id_usuario);
+ALTER TABLE Reservas ADD FOREIGN KEY (id_usuario_aceptante) REFERENCES Usuarios(id_usuario);
+ALTER TABLE Usuarios_Equipos ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
+ALTER TABLE Usuarios_Equipos ADD FOREIGN KEY (id_equipo) REFERENCES Equipos(id_equipo);
+ALTER TABLE Reservas_Historial ADD FOREIGN KEY (id_reserva) REFERENCES Reservas(id_reserva);
+ALTER TABLE Reservas_Historial ADD FOREIGN KEY (id_usuario_reservante) REFERENCES Usuarios(id_usuario);
+ALTER TABLE Reservas_Historial ADD FOREIGN KEY (id_usuario_aceptante) REFERENCES Usuarios(id_usuario);
+ALTER TABLE Reservas_Historial ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha);
+ALTER TABLE Reservas_Historial ADD FOREIGN KEY (id_estado) REFERENCES Estados_Reservas(id_estado);
+ALTER TABLE Reviews ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
+ALTER TABLE Reviews ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha);
+ALTER TABLE Pagos ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
+ALTER TABLE Equipamiento ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha);
+ALTER TABLE Notificaciones ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
+ALTER TABLE Tarifas ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha);
 ALTER TABLE Registros_Acceso ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
 
 -- Deshabilitamos los horarios que no pueden reservarse los días de semana
