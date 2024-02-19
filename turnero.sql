@@ -1,5 +1,6 @@
 -- Eliminar todas las tablas si existen
-DROP TABLE IF EXISTS Reservas_Historial, Reviews, Pagos, Equipamiento, Notificaciones, Tarifas, Eventos, Registros_Acceso, Usuarios_Equipos, Reservas, Estados_Reservas, Canchas, Equipos, Deportes, Usuarios;
+DROP TABLE IF EXISTS Reservas_Historial, Reviews, Pagos, Equipamiento, Notificaciones, Tarifas, Eventos, Registros_Acceso, 
+    Usuarios_Equipos, Reservas, Estados_Reservas, Canchas, Equipos, Deportes, Usuarios;
 
 -- Crear el esquema 'turnero' si no existe
 CREATE SCHEMA IF NOT EXISTS turnero;
