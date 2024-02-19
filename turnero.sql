@@ -5,7 +5,8 @@ CREATE SCHEMA IF NOT EXISTS turnero;
 -- Utilizar el esquema 'turnero'
 USE turnero;
 
--- Crear tabla Usuarios sin la columna id_evento_suscrito
+-- Crear tabla Usuarios 
+DROP TABLE IF EXISTS Usuarios;
 CREATE TABLE IF NOT EXISTS Usuarios (
     id_usuario INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(255) NOT NULL,
@@ -18,14 +19,14 @@ CREATE TABLE IF NOT EXISTS Usuarios (
 ALTER TABLE Usuarios ADD FOREIGN KEY (id_evento_suscrito) REFERENCES Eventos(id_evento);
 
 -- Crear tabla Deportes
-DROP TABLE IF EXISTS Deportes
+DROP TABLE IF EXISTS Deportes;
 CREATE TABLE IF NOT EXISTS Deportes (
     id_deporte INT PRIMARY KEY AUTO_INCREMENT,
     nombre_deporte VARCHAR(255) NOT NULL
 );
 
 -- Crear tabla Canchas
-DROP TABLE IF EXISTS Canchas
+DROP TABLE IF EXISTS Canchas;
 CREATE TABLE IF NOT EXISTS Canchas (
     id_cancha INT PRIMARY KEY AUTO_INCREMENT,
     id_deporte INT NOT NULL,
@@ -40,7 +41,7 @@ CREATE TABLE IF NOT EXISTS Canchas (
 ALTER TABLE Canchas ADD FOREIGN KEY (id_deporte) REFERENCES Deportes(id_deporte);
 
 -- Crear tabla Estados Reservas
-DROP TABLE IF EXISTS Estados_Reservas
+DROP TABLE IF EXISTS Estados_Reservas;
 CREATE TABLE IF NOT EXISTS Estados_Reservas (
     id_estado INT PRIMARY KEY AUTO_INCREMENT,
     nombre_estado VARCHAR(255) NOT NULL,
@@ -48,7 +49,7 @@ CREATE TABLE IF NOT EXISTS Estados_Reservas (
 );
 
 -- Crear tabla Reservas
-DROP TABLE IF EXISTS Reservas
+DROP TABLE IF EXISTS Reservas;
 CREATE TABLE IF NOT EXISTS Reservas (
     id_reserva INT PRIMARY KEY AUTO_INCREMENT,
     id_usuario INT NOT NULL,
@@ -70,7 +71,7 @@ ALTER TABLE Reservas ADD FOREIGN KEY (id_usuario_reservante) REFERENCES Usuarios
 ALTER TABLE Reservas ADD FOREIGN KEY (id_usuario_aceptante) REFERENCES Usuarios(id_usuario);
 
 -- Crear tabla Equipos
-DROP TABLE IF EXISTS Equipos
+DROP TABLE IF EXISTS Equipos;
 CREATE TABLE IF NOT EXISTS Equipos (
     id_equipo INT PRIMARY KEY AUTO_INCREMENT,
     nombre_equipo VARCHAR(255) NOT NULL,
@@ -78,7 +79,7 @@ CREATE TABLE IF NOT EXISTS Equipos (
 );
 
 -- Crear tabla Usuarios_Equipos
-DROP TABLE IF EXISTS Usuarios_Equipos
+DROP TABLE IF EXISTS Usuarios_Equipos;
 CREATE TABLE IF NOT EXISTS Usuarios_Equipos (
     id_usuario_equipo INT PRIMARY KEY AUTO_INCREMENT,
     id_usuario INT NOT NULL,
@@ -90,7 +91,7 @@ ALTER TABLE Usuarios_Equipos ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id
 ALTER TABLE Usuarios_Equipos ADD FOREIGN KEY (id_equipo) REFERENCES Equipos(id_equipo);
 
 -- Crear tabla para el historial de reservas
-DROP TABLE IF EXISTS Reservas_Historial
+DROP TABLE IF EXISTS Reservas_Historial;
 CREATE TABLE IF NOT EXISTS Reservas_Historial (
     id_historial INT PRIMARY KEY AUTO_INCREMENT,
     id_reserva INT NOT NULL,
@@ -110,7 +111,7 @@ ALTER TABLE Reservas_Historial ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id
 ALTER TABLE Reservas_Historial ADD FOREIGN KEY (id_estado) REFERENCES Estados_Reservas(id_estado);
 
 -- Crear tabla Reviews en lugar de Reseñas
-DROP TABLE IF EXISTS Reviews
+DROP TABLE IF EXISTS Reviews;
 CREATE TABLE IF NOT EXISTS Reviews (
     id_review INT PRIMARY KEY AUTO_INCREMENT,
     id_usuario INT NOT NULL,
@@ -125,7 +126,7 @@ ALTER TABLE Reviews ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
 ALTER TABLE Reviews ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha);
 
 -- Crear tabla Pagos
-DROP TABLE IF EXISTS Pagos
+DROP TABLE IF EXISTS Pagos;
 CREATE TABLE IF NOT EXISTS Pagos (
     id_pago INT PRIMARY KEY AUTO_INCREMENT,
     id_usuario INT NOT NULL,
@@ -137,7 +138,7 @@ CREATE TABLE IF NOT EXISTS Pagos (
 ALTER TABLE Pagos ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
 
 -- Crear tabla Equipamiento
-DROP TABLE IF EXISTS Equipamiento
+DROP TABLE IF EXISTS Equipamiento;
 CREATE TABLE IF NOT EXISTS Equipamiento (
     id_equipamiento INT PRIMARY KEY AUTO_INCREMENT,
     nombre_equipo VARCHAR(255) NOT NULL,
@@ -148,7 +149,7 @@ CREATE TABLE IF NOT EXISTS Equipamiento (
 ALTER TABLE Equipamiento ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha);
 
 -- Crear tabla Notificaciones
-DROP TABLE IF EXISTS Notificaciones
+DROP TABLE IF EXISTS Notificaciones;
 CREATE TABLE IF NOT EXISTS Notificaciones (
     id_notificacion INT PRIMARY KEY AUTO_INCREMENT,
     id_usuario INT NOT NULL,
@@ -160,7 +161,7 @@ CREATE TABLE IF NOT EXISTS Notificaciones (
 ALTER TABLE Notificaciones ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
 
 -- Crear tabla Tarifas
-DROP TABLE IF EXISTS Tarifas
+DROP TABLE IF EXISTS Tarifas;
 CREATE TABLE IF NOT EXISTS Tarifas (
     id_tarifa INT PRIMARY KEY AUTO_INCREMENT,
     id_cancha INT NOT NULL,
@@ -171,7 +172,7 @@ CREATE TABLE IF NOT EXISTS Tarifas (
 ALTER TABLE Tarifas ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha);
 
 -- Crear tabla Eventos
-DROP TABLE IF EXISTS  Eventos
+DROP TABLE IF EXISTS  Eventos;
 CREATE TABLE IF NOT EXISTS Eventos (
     id_evento INT PRIMARY KEY AUTO_INCREMENT,
     nombre_evento VARCHAR(255),
@@ -179,7 +180,7 @@ CREATE TABLE IF NOT EXISTS Eventos (
 );
 
 -- Crear tabla Registros_Acceso 
-DROP TABLE IF EXISTS Registros_Acceso
+DROP TABLE IF EXISTS Registros_Acceso;
 CREATE TABLE IF NOT EXISTS Registros_Acceso (
     id_registro INT PRIMARY KEY AUTO_INCREMENT,
     id_usuario INT NOT NULL,
