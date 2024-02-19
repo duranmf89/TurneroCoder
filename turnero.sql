@@ -1,3 +1,6 @@
+-- Eliminar todas las tablas si existen
+DROP TABLE IF EXISTS Reservas_Historial, Reviews, Pagos, Equipamiento, Notificaciones, Tarifas, Eventos, Registros_Acceso, Usuarios_Equipos, Reservas, Estados_Reservas, Canchas, Equipos, Deportes, Usuarios;
+
 -- Crear el esquema 'turnero' si no existe
 CREATE SCHEMA IF NOT EXISTS turnero;
 
@@ -5,150 +8,171 @@ CREATE SCHEMA IF NOT EXISTS turnero;
 USE turnero;
 
 -- Crear tabla Usuarios
-CREATE TABLE Usuarios (
+CREATE TABLE IF NOT EXISTS Usuarios (
     id_usuario INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(255),
-    correo VARCHAR(255),
-    contrasena VARCHAR(255)
+    nombre VARCHAR(255) NOT NULL,
+    correo VARCHAR(255) NOT NULL,
+    contrasena VARCHAR(255) NOT NULL
 );
 
 -- Crear tabla Deportes
-CREATE TABLE Deportes (
+CREATE TABLE IF NOT EXISTS Deportes (
     id_deporte INT PRIMARY KEY AUTO_INCREMENT,
-    nombre_deporte VARCHAR(255)
+    nombre_deporte VARCHAR(255) NOT NULL
 );
 
 -- Crear tabla Canchas
-CREATE TABLE Canchas (
+CREATE TABLE IF NOT EXISTS Canchas (
     id_cancha INT PRIMARY KEY AUTO_INCREMENT,
-    id_deporte INT,
-    nombre_cancha VARCHAR(255),
+    id_deporte INT NOT NULL,
+    nombre_cancha VARCHAR(255) NOT NULL,
     hora_semana TIME,
     hora_fin_semana TIME,
     dia_semana VARCHAR(10),
-    disponible BOOLEAN,
-    FOREIGN KEY (id_deporte) REFERENCES Deportes(id_deporte)
+    disponible BOOLEAN
 );
 
+-- Agregar clave foránea a la tabla Canchas
+ALTER TABLE Canchas ADD FOREIGN KEY (id_deporte) REFERENCES Deportes(id_deporte);
+
 -- Crear tabla Estados Reservas
-CREATE TABLE Estados_Reservas (
+CREATE TABLE IF NOT EXISTS Estados_Reservas (
     id_estado INT PRIMARY KEY AUTO_INCREMENT,
-    nombre_estado VARCHAR(255),
+    nombre_estado VARCHAR(255) NOT NULL,
     descripcion VARCHAR(255)
 );
 
 -- Crear tabla Reservas
-CREATE TABLE Reservas (
+CREATE TABLE IF NOT EXISTS Reservas (
     id_reserva INT PRIMARY KEY AUTO_INCREMENT,
-    id_usuario INT,
-    id_cancha INT,
-    fecha DATE,
+    id_usuario INT NOT NULL,
+    id_cancha INT NOT NULL,
+    fecha DATE NOT NULL,
     hora_semana TIME,
     hora_fin_semana TIME,
-    id_estado INT,
-    id_usuario_reservante INT,
-    id_usuario_aceptante INT,
-    dia_semana VARCHAR(10),
-    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario),
-    FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha),
-    FOREIGN KEY (id_estado) REFERENCES Estados_Reservas(id_estado),
-    FOREIGN KEY (id_usuario_reservante) REFERENCES Usuarios(id_usuario),
-    FOREIGN KEY (id_usuario_aceptante) REFERENCES Usuarios(id_usuario)
+    id_estado INT NOT NULL,
+    id_usuario_reservante INT NOT NULL,
+    id_usuario_aceptante INT NOT NULL,
+    dia_semana VARCHAR(10)
 );
 
+-- Agregar claves foráneas a la tabla Reservas
+ALTER TABLE Reservas ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
+ALTER TABLE Reservas ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha);
+ALTER TABLE Reservas ADD FOREIGN KEY (id_estado) REFERENCES Estados_Reservas(id_estado);
+ALTER TABLE Reservas ADD FOREIGN KEY (id_usuario_reservante) REFERENCES Usuarios(id_usuario);
+ALTER TABLE Reservas ADD FOREIGN KEY (id_usuario_aceptante) REFERENCES Usuarios(id_usuario);
+
 -- Crear tabla Equipos
-CREATE TABLE Equipos (
+CREATE TABLE IF NOT EXISTS Equipos (
     id_equipo INT PRIMARY KEY AUTO_INCREMENT,
-    nombre_equipo VARCHAR(255),
+    nombre_equipo VARCHAR(255) NOT NULL,
     avatar VARCHAR(255)
 );
 
 -- Crear tabla Usuarios_Equipos
-CREATE TABLE Usuarios_Equipos (
+CREATE TABLE IF NOT EXISTS Usuarios_Equipos (
     id_usuario_equipo INT PRIMARY KEY AUTO_INCREMENT,
-    id_usuario INT,
-    id_equipo INT,
-    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario),
-    FOREIGN KEY (id_equipo) REFERENCES Equipos(id_equipo)
+    id_usuario INT NOT NULL,
+    id_equipo INT NOT NULL
 );
+
+-- Agregar claves foráneas a la tabla Usuarios_Equipos
+ALTER TABLE Usuarios_Equipos ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
+ALTER TABLE Usuarios_Equipos ADD FOREIGN KEY (id_equipo) REFERENCES Equipos(id_equipo);
 
 -- Crear tabla para el historial de reservas
-CREATE TABLE Reservas_Historial (
+CREATE TABLE IF NOT EXISTS Reservas_Historial (
     id_historial INT PRIMARY KEY AUTO_INCREMENT,
-    id_reserva INT,
-    id_usuario_reservante INT,
-    id_usuario_aceptante INT,
-    id_cancha INT,
-    fecha DATE,
+    id_reserva INT NOT NULL,
+    id_usuario_reservante INT NOT NULL,
+    id_usuario_aceptante INT NOT NULL,
+    id_cancha INT NOT NULL,
+    fecha DATE NOT NULL,
     hora_semana TIME,
-    id_estado INT,
-    FOREIGN KEY (id_reserva) REFERENCES Reservas(id_reserva),
-    FOREIGN KEY (id_usuario_reservante) REFERENCES Usuarios(id_usuario),
-    FOREIGN KEY (id_usuario_aceptante) REFERENCES Usuarios(id_usuario),
-    FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha),
-    FOREIGN KEY (id_estado) REFERENCES Estados_Reservas(id_estado)
+    id_estado INT NOT NULL
 );
+
+-- Agregar claves foráneas a la tabla Reservas_Historial
+ALTER TABLE Reservas_Historial ADD FOREIGN KEY (id_reserva) REFERENCES Reservas(id_reserva);
+ALTER TABLE Reservas_Historial ADD FOREIGN KEY (id_usuario_reservante) REFERENCES Usuarios(id_usuario);
+ALTER TABLE Reservas_Historial ADD FOREIGN KEY (id_usuario_aceptante) REFERENCES Usuarios(id_usuario);
+ALTER TABLE Reservas_Historial ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha);
+ALTER TABLE Reservas_Historial ADD FOREIGN KEY (id_estado) REFERENCES Estados_Reservas(id_estado);
 
 -- Crear tabla Reviews en lugar de Reseñas
-CREATE TABLE Reviews (
+CREATE TABLE IF NOT EXISTS Reviews (
     id_review INT PRIMARY KEY AUTO_INCREMENT,
-    id_usuario INT,
-    id_cancha INT,
-    fecha DATE,
+    id_usuario INT NOT NULL,
+    id_cancha INT NOT NULL,
+    fecha DATE NOT NULL,
     calificacion INT,
-    comentario TEXT,
-    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario),
-    FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha)
+    comentario TEXT
 );
+
+-- Agregar claves foráneas a la tabla Reviews
+ALTER TABLE Reviews ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
+ALTER TABLE Reviews ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha);
 
 -- Crear tabla Pagos
-CREATE TABLE Pagos (
+CREATE TABLE IF NOT EXISTS Pagos (
     id_pago INT PRIMARY KEY AUTO_INCREMENT,
-    id_usuario INT,
+    id_usuario INT NOT NULL,
     monto DECIMAL(10, 2),
-    fecha DATE,
-    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
+    fecha DATE
 );
+
+-- Agregar clave foránea a la tabla Pagos
+ALTER TABLE Pagos ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
 
 -- Crear tabla Equipamiento
-CREATE TABLE Equipamiento (
+CREATE TABLE IF NOT EXISTS Equipamiento (
     id_equipamiento INT PRIMARY KEY AUTO_INCREMENT,
-    nombre_equipo VARCHAR(255),
-    id_cancha INT,
-    FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha)
+    nombre_equipo VARCHAR(255) NOT NULL,
+    id_cancha INT NOT NULL
 );
+
+-- Agregar clave foránea a la tabla Equipamiento
+ALTER TABLE Equipamiento ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha);
 
 -- Crear tabla Notificaciones
-CREATE TABLE Notificaciones (
+CREATE TABLE IF NOT EXISTS Notificaciones (
     id_notificacion INT PRIMARY KEY AUTO_INCREMENT,
-    id_usuario INT,
+    id_usuario INT NOT NULL,
     mensaje TEXT,
-    fecha DATE,
-    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
+    fecha DATE
 );
+
+-- Agregar clave foránea a la tabla Notificaciones
+ALTER TABLE Notificaciones ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
 
 -- Crear tabla Tarifas
-CREATE TABLE Tarifas (
+CREATE TABLE IF NOT EXISTS Tarifas (
     id_tarifa INT PRIMARY KEY AUTO_INCREMENT,
-    id_cancha INT,
-    monto DECIMAL(10, 2),
-    FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha)
+    id_cancha INT NOT NULL,
+    monto DECIMAL(10, 2)
 );
 
+-- Agregar clave foránea a la tabla Tarifas
+ALTER TABLE Tarifas ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha);
+
 -- Crear tabla Eventos
-CREATE TABLE Eventos (
+CREATE TABLE IF NOT EXISTS Eventos (
     id_evento INT PRIMARY KEY AUTO_INCREMENT,
     nombre_evento VARCHAR(255),
     fecha DATE
 );
 
 -- Crear tabla Registros_Acceso
-CREATE TABLE Registros_Acceso (
+CREATE TABLE IF NOT EXISTS Registros_Acceso (
     id_registro INT PRIMARY KEY AUTO_INCREMENT,
-    id_usuario INT,
-    fecha_hora TIMESTAMP,
-    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
+    id_usuario INT NOT NULL,
+    fecha_hora TIMESTAMP
 );
+
+-- Agregar clave foránea a la tabla Registros_Acceso
+ALTER TABLE Registros_Acceso ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
+
 -- Deshabilitamos los horarios que no pueden reservarse los días de semana
 UPDATE Canchas
 SET hora_semana = NULL, hora_fin_semana = NULL
