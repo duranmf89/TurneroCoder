@@ -1,0 +1,14 @@
+Nombre del Proyecto: Sistema de Gestión de Reservas para Clubes Deportivos
+
+Descripción de la Base de Datos:
+La base de datos del sistema de gestión de reservas para clubes deportivos es una estructura relacional diseñada para almacenar y gestionar
+la información relacionada con usuarios, instalaciones deportivas, reservas, eventos, pagos y otros aspectos relevantes para la operación del club.
+
+Entidades Principales:
+
+Usuarios: Almacena la información básica de los usuarios registrados en el sistema, como su nombre, correo electrónico y contraseña.
+Instalaciones (Canchas): Contiene detalles sobre las diferentes instalaciones deportivas disponibles en el club, como el nombre de la cancha, el horario de disponibilidad y 
+el estado de la misma.
+Reservas: Registra las reservas realizadas por los usuarios, incluyendo la fecha, hora, instalación seleccionada y estado de la reserva (confirmada, pendiente, cancelada, etc.).
+Pagos: Registra las transacciones financieras asociadas con las reservas y los servicios adicionales proporcionados por el club.
+Notificaciones: Almacena información sobre las notificaciones enviadas a los usuarios, como confirmaciones de reservas, recordatorios de eventos, etc.
