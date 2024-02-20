@@ -147,7 +147,7 @@ CREATE TABLE IF NOT EXISTS Registros_Acceso (
     fecha_hora TIMESTAMP
 );
 
--- Agregar claves foráneas a las tablas que las requieran
+-- Agregar claves foráneas y relaciones
 ALTER TABLE Usuarios ADD FOREIGN KEY (id_evento_suscrito) REFERENCES Eventos(id_evento);
 ALTER TABLE Canchas ADD FOREIGN KEY (id_deporte) REFERENCES Deportes(id_deporte);
 ALTER TABLE Reservas ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
