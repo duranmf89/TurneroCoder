@@ -52,8 +52,8 @@ CREATE TABLE IF NOT EXISTS Reservas (
     hora_semana TIME,
     hora_fin_semana TIME,
     id_estado INT NOT NULL,
-    id_usuario_reservante INT NOT NULL,
-    id_usuario_aceptante INT NOT NULL,
+    id_usuario_reservante INT,
+    id_usuario_aceptante INT,
     dia_semana VARCHAR(10)
 );
 
