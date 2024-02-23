@@ -1,14 +1,39 @@
-Nombre del Proyecto: Sistema de Gestión de Reservas para Clubes Deportivos
+Descripción del Proyecto: Sistema de Gestión de Reservas Deportivas
 
-Descripción de la Base de Datos:
-La base de datos del sistema de gestión de reservas para clubes deportivos es una estructura relacional diseñada para almacenar y gestionar
-la información relacionada con usuarios, instalaciones deportivas, reservas, eventos, pagos y otros aspectos relevantes para la operación del club.
+La base de datos representa un sistema de gestión de reservas deportivas diseñado para facilitar la organización y reserva de 
+espacios deportivos, como canchas y equipos, así como para permitir a los usuarios registrarse, reservar y revisar sus actividades deportivas.
 
-Entidades Principales:
+Tablas Principales:
 
-Usuarios: Almacena la información básica de los usuarios registrados en el sistema, como su nombre, correo electrónico y contraseña.
-Instalaciones (Canchas): Contiene detalles sobre las diferentes instalaciones deportivas disponibles en el club, como el nombre de la cancha, el horario de disponibilidad y 
-el estado de la misma.
-Reservas: Registra las reservas realizadas por los usuarios, incluyendo la fecha, hora, instalación seleccionada y estado de la reserva (confirmada, pendiente, cancelada, etc.).
-Pagos: Registra las transacciones financieras asociadas con las reservas y los servicios adicionales proporcionados por el club.
-Notificaciones: Almacena información sobre las notificaciones enviadas a los usuarios, como confirmaciones de reservas, recordatorios de eventos, etc.
+Usuarios: Almacena la información de los usuarios que utilizan el sistema, incluyendo su nombre, correo electrónico y contraseña.
+También registra la suscripción de usuarios a eventos deportivos específicos.
+Eventos: Contiene detalles sobre los eventos deportivos programados, como el nombre del evento y la fecha.
+Canchas: Registra información sobre las canchas disponibles para reserva, incluyendo el deporte al que están asociadas, el nombre
+de la cancha y los horarios de disponibilidad.
+Reservas: Gestiona las reservas realizadas por los usuarios, incluyendo la fecha, hora, estado de la reserva y los usuarios involucrados.
+Equipos: Almacena información sobre los equipos deportivos, como su nombre y avatar asociado.
+
+Otros Elementos de la Base de Datos:
+
+Estados_Reservas: Define los posibles estados de una reserva (por ejemplo, pendiente, confirmada, cancelada).
+Reservas_Historial: Registra el historial de reservas, incluyendo detalles como la fecha, hora y estado de las reservas anteriores.
+Reviews: Permite a los usuarios dejar reseñas y calificaciones sobre las canchas utilizadas.
+Pagos: Gestiona los pagos realizados por los usuarios por las reservas.
+Notificaciones: Permite enviar mensajes y notificaciones a los usuarios.
+Tarifas: Define las tarifas asociadas a las reservas de las canchas.
+
+Uso de SQL:
+
+El sistema utiliza SQL (Structured Query Language) para realizar consultas y manipular los datos almacenados en la base de datos,
+lo que permite a los usuarios realizar una variedad de operaciones, como buscar canchas disponibles, realizar reservas, revisar el
+historial de reservas y dejar reseñas.
+La base de datos utiliza claves primarias, claves foráneas y otros tipos de restricciones para mantener la integridad de los datos
+y establecer relaciones entre las diferentes entidades.
+
+Conclusion:
+
+En resumen, nuestra base de datos proporciona una solución completa para la gestión de reservas deportivas, ofreciendo a los
+usuarios una plataforma fácil de usar y eficiente para organizar sus actividades deportivas.
+
+
+
