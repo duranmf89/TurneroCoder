@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS Estados_Reservas (
 -- Cancelada: Cuando la reserva ha sido cancelada por alguna razón.
 
 
--- Crear tabla Reservas
+-- Crear tabla Reservas (TABLA DE HECHOS)
 DROP TABLE IF EXISTS Reservas;
 CREATE TABLE IF NOT EXISTS Reservas (
     id_reserva INT PRIMARY KEY AUTO_INCREMENT,
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS Reviews (
     comentario TEXT
 );
 
--- Crear tabla Pagos
+-- Crear tabla Pagos (TABLA TRANSACCIONAL)
 DROP TABLE IF EXISTS Pagos;
 CREATE TABLE IF NOT EXISTS Pagos (
     id_pago INT PRIMARY KEY AUTO_INCREMENT,
