@@ -34,13 +34,18 @@ CREATE TABLE IF NOT EXISTS Canchas (
     disponible BOOLEAN
 );
 
--- Crear tabla Estados Reservas
 DROP TABLE IF EXISTS Estados_Reservas;
 CREATE TABLE IF NOT EXISTS Estados_Reservas (
     id_estado INT PRIMARY KEY AUTO_INCREMENT,
-    nombre_estado VARCHAR(255) NOT NULL,
+    nombre_estado ENUM('Pendiente', 'Confirmada', 'Cancelada') NOT NULL,
     descripcion VARCHAR(255)
 );
+
+-- Descripcion campos:
+-- Pendiente: Cuando la reserva está creada pero aún no ha sido confirmada.
+-- Confirmada: Cuando la reserva ha sido confirmada por el usuario o el sistema.
+-- Cancelada: Cuando la reserva ha sido cancelada por alguna razón.
+
 
 -- Crear tabla Reservas
 DROP TABLE IF EXISTS Reservas;
