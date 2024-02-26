@@ -88,6 +88,7 @@ CREATE TABLE IF NOT EXISTS Reservas_Historial (
     id_cancha INT NOT NULL,
     fecha DATE NOT NULL,
     hora_semana TIME,
+    hora_fin_semana TIME,
     id_estado INT NOT NULL
 );
 
