@@ -10,9 +10,12 @@ DROP TABLE IF EXISTS Usuarios;
 CREATE TABLE IF NOT EXISTS Usuarios (
     id_usuario INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,
+    dni VARCHAR(20) UNIQUE NOT NULL,
     correo VARCHAR(255) NOT NULL,
     contrasena VARCHAR(255) NOT NULL,
-    id_evento_suscrito INT
+    contrasena_confirm VARCHAR(255) NOT NULL,
+    id_evento INT
 );
 
 -- Crear tabla Deportes
@@ -154,7 +157,7 @@ CREATE TABLE IF NOT EXISTS Registros_Acceso (
 );
 
 -- Agregar claves foráneas y relaciones
-ALTER TABLE Usuarios ADD FOREIGN KEY (id_evento_suscrito) REFERENCES Eventos(id_evento);
+ALTER TABLE Usuarios ADD FOREIGN KEY (id_evento) REFERENCES Eventos(id_evento);
 ALTER TABLE Canchas ADD FOREIGN KEY (id_deporte) REFERENCES Deportes(id_deporte);
 ALTER TABLE Reservas ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
 ALTER TABLE Reservas ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha);
