@@ -171,7 +171,6 @@ ALTER TABLE Pagos ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
 ALTER TABLE Equipamiento ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha);
 ALTER TABLE Notificaciones ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
 ALTER TABLE Tarifas ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha);
-ALTER TABLE Registros_Acceso ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
 
 -- Deshabilitamos los horarios que no pueden reservarse los días de semana
 UPDATE Canchas
