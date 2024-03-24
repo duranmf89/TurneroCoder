@@ -285,6 +285,10 @@ VALUES (3, 4100.00); -- la fecha quedo en null
 INSERT INTO Pagos (id_usuario, monto, fecha)
 VALUES (9, 4800.00, NOW()); -- se agrega el campo fecha y ahora se carga correctamente en la DB
 
+-- Se ingresa en duro un pago en Febrero para comprobar el reporte del stored procedure 'GenerarReporteIngresosPorMes'.
+INSERT INTO Pagos (id_usuario, monto, fecha)
+VALUES (1, 1700.00, '2024-02-25');
+
 select * from pagos;
 
 -- Tabla Equipamientos
