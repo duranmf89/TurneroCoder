@@ -19,7 +19,7 @@ END //
 
 DELIMITER ;
 
--- EJEMPLO DE LLAMADA
+-- EJEMPLO DE LLAMADA (se muestra en los registros los ingresos($) por mes y año. Una fila por mes)
 -- CALL GenerarReporteIngresosPorMes('2023-01-01', '2023-12-31');
 
 -- STORED PROCEDURE CONSULTA PAGOS POR DNI Y FECHA
