@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS Usuarios (
     correo VARCHAR(255) NOT NULL,
     contrasena VARCHAR(255) NOT NULL,
     contrasena_confirm VARCHAR(255) NOT NULL,
+    fecha_registro DATE NOT NULL,
     id_evento INT
 );
 
