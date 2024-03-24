@@ -149,13 +149,6 @@ CREATE TABLE IF NOT EXISTS Eventos (
     fecha DATE
 );
 
--- Crear tabla Registros_Acceso 
-DROP TABLE IF EXISTS Registros_Acceso;
-CREATE TABLE IF NOT EXISTS Registros_Acceso (
-    id_registro INT PRIMARY KEY AUTO_INCREMENT,
-    id_usuario INT NOT NULL,
-    fecha_hora TIMESTAMP
-);
 
 -- Agregar claves foráneas y relaciones
 ALTER TABLE Usuarios ADD FOREIGN KEY (id_evento) REFERENCES Eventos(id_evento);
