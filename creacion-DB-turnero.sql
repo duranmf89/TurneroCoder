@@ -171,11 +171,6 @@ ALTER TABLE Equipamiento ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_canch
 ALTER TABLE Notificaciones ADD FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario);
 ALTER TABLE Tarifas ADD FOREIGN KEY (id_cancha) REFERENCES Canchas(id_cancha);
 
--- Deshabilitamos los horarios que no pueden reservarse los días de semana
-UPDATE Canchas
-SET hora_semana = NULL, hora_fin_semana = NULL
-WHERE dia_semana IN ('Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes')
-  AND hora_semana BETWEEN '09:00:00' AND '15:00:00';
   
 -- Modificamos el valor de fecha en Pagos
 ALTER TABLE Pagos MODIFY COLUMN fecha TIMESTAMP;
