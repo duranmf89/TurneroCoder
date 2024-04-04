@@ -3,7 +3,8 @@ Tematica del proyecto:
 INTRODUCCION
 El presente documento presenta un proyecto de Sistema de Gestión de Reservas Deportivas, el cual está diseñado para simplificar la organización 
 y reserva de espacios deportivos, así como para permitir a los usuarios llevar un registro de sus actividades deportivas.
-A continuación, se detallan los objetivos, la situación problemática, el modelo de negocio y otros aspectos relevantes del proyecto.
+A continuación, se detallan los objetivos, la situación problemática, el modelo de negocio y otros aspectos relevantes del proyecto
+Vistas, Funciones, Stored Procedures, Triggers).
 
 OBJETIVO
 El objetivo principal de este proyecto es proporcionar una plataforma integral para la gestión de reservas deportivas, que permita a los
@@ -89,4 +90,51 @@ para contar las filas en la tabla de usuarios que coincidan con el mes y el año
 Uso: Para utilizar esta función, se llama a ContarUsuariosRegistradosPorMes con el mes y el año deseados como argumentos. 
 Por ejemplo: "SELECT ContarUsuariosRegistradosPorMes(4, 2024)" devolverá el número de usuarios registrados en abril de 2024.
 
+STORED PROCEDURES
 
+SP GenerarReporteIngresosPorMes:
+
+Propósito: Este procedimiento genera un reporte de ingresos por mes dentro de un rango de fechas especificado.
+Parámetros de entrada: Recibe dos parámetros de tipo DATE: fecha_inicio y fecha_fin, que representan el rango de fechas para el reporte.
+Resultados de salida: Al finalizar su ejecución, este procedimiento devuelve un conjunto de resultados que incluye el año, mes y la suma
+total de ingresos para cada mes dentro del rango de fechas especificado.
+Estructura: El procedimiento realiza una consulta que selecciona el año, mes y la suma total de los ingresos (monto) de los pagos dentro
+del rango de fechas especificado. Luego, agrupa los resultados por año y mes, y los ordena cronológicamente.
+Uso: Se puede llamar al procedimiento con un rango de fechas deseado utilizando la siguiente sintaxis:
+"CALL GenerarReporteIngresosPorMes('2023-01-01', '2024-12-31');"
+
+
+SP ConsultarPagosPorUsuarioYFecha:
+
+Propósito: Este procedimiento consulta los pagos realizados por un usuario específico en una fecha determinada.
+Parámetros de entrada: Recibe dos parámetros: dni_usuario (DNI del usuario a consultar) y fecha_consulta 
+(fecha en la que se realizará la consulta de pagos).
+Resultados de salida: Al finalizar su ejecución, este procedimiento devuelve un conjunto de resultados que incluye el apellido, nombre,
+fecha y monto de los pagos realizados por el usuario especificado en la fecha indicada.
+Estructura: El procedimiento realiza una consulta que selecciona el apellido, nombre, fecha y monto de los pagos realizados por el usuario
+especificado en la fecha indicada. La consulta se realiza mediante una unión entre las tablas de Pagos y Usuarios, utilizando el DNI para
+filtrar los resultados.
+Uso: Se puede llamar al procedimiento con el DNI del usuario y la fecha deseada utilizando la siguiente sintaxis:
+"CALL ConsultarPagosPorUsuarioYFecha('23456789', '2024-03-27');"
+
+
+TRIGGERS
+
+Trigger TRG_LOG_Usuarios:
+
+Evento: Este trigger se activa después de cada inserción en la tabla "Usuarios".
+Propósito: Registra los detalles de la inserción en la tabla de logs "logGeneral", incluyendo el tipo de acción (INSERT), la tabla afectada
+("Usuarios"), el usuario que realizó la acción (obtenido a través de CURRENT_USER()), así como el nombre, apellido, DNI y correo electrónico
+del nuevo usuario insertado.
+Funcionamiento: Al activarse el trigger después de una inserción en la tabla "Usuarios", se inserta una nueva fila en la tabla "logGeneral" 
+con los detalles de la inserción y los datos del nuevo usuario.
+
+
+Trigger TRG_UPDATE_CORREO:
+
+Evento: Este trigger se activa antes de cada actualización en la tabla "Usuarios".
+Propósito: Registra los cambios en el correo electrónico de un usuario en la tabla de logs "logEvents".
+Funcionamiento: Antes de que se produzca la actualización del correo electrónico de un usuario en la tabla "Usuarios", este trigger
+compara el correo electrónico antiguo (OLD.correo) con el nuevo (NEW.correo). Si son diferentes, se inserta una nueva fila en la tabla
+"logEvents" con los detalles de la actualización, incluyendo el correo electrónico anterior y el nuevo, el tipo de acción (UPDATE), 
+la tabla afectada ("Usuarios") y el usuario que realizó la acción (obtenido a través de CURRENT_USER()).
