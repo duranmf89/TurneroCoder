@@ -1,39 +1,37 @@
-Descripción del Proyecto: Sistema de Gestión de Reservas Deportivas
+Tematica del proyecto:
 
-La base de datos representa un sistema de gestión de reservas deportivas diseñado para facilitar la organización y reserva de 
-espacios deportivos, como canchas y equipos, así como para permitir a los usuarios registrarse, reservar y revisar sus actividades deportivas.
+INTRODUCCION
+El presente documento presenta un proyecto de Sistema de Gestión de Reservas Deportivas, el cual está diseñado para simplificar la organización 
+y reserva de espacios deportivos, así como para permitir a los usuarios llevar un registro de sus actividades deportivas.
+A continuación, se detallan los objetivos, la situación problemática, el modelo de negocio y otros aspectos relevantes del proyecto.
 
-Tablas Principales:
+OBJETIVO
+El objetivo principal de este proyecto es proporcionar una plataforma integral para la gestión de reservas deportivas, que permita a los
+usuarios reservar canchas, tener equipos, revisar su historial de reservas, realizar pagos a traves de la plataforma, suscribirse a distintos
+eventos deportivos de manera eficiente y organizada, entre otros. Además se buscafacilitar el registro de usuarios, la administración de pagos
+y la generación de informes sobre las actividades realizadas.
 
-Usuarios: Almacena la información de los usuarios que utilizan el sistema, incluyendo su nombre, correo electrónico y contraseña.
-También registra la suscripción de usuarios a eventos deportivos específicos.
-Eventos: Contiene detalles sobre los eventos deportivos programados, como el nombre del evento y la fecha.
-Canchas: Registra información sobre las canchas disponibles para reserva, incluyendo el deporte al que están asociadas, el nombre
-de la cancha y los horarios de disponibilidad.
-Reservas: Gestiona las reservas realizadas por los usuarios, incluyendo la fecha, hora, estado de la reserva y los usuarios involucrados.
-Equipos: Almacena información sobre los equipos deportivos, como su nombre y avatar asociado.
+SITUACION PROBLEMATICA
+La falta de un sistema centralizado para la gestión de reservas deportivas conlleva a problemas como la dificultad para encontrar y reservar
+espacios disponibles, la falta de seguimiento de las reservas realizadas y la ausencia de un registro detallado de las actividades deportivas.
+Esto puede resultar en una experiencia desorganizada y poco eficiente para los usuarios, así como en la pérdida de oportunidades de reserva y
+de control sobre los pagos.
 
-Otros Elementos de la Base de Datos:
+MODELO DE NEGOCIO
+El Sistema de Gestión de Reservas Deportivas se centra en facilitar un acceso eficiente a la información a través de su robusta base de datos.
+Ofrece servicios de reserva de espacios deportivos, historiales de reservas, notificaciones sobre eventos y recordatorios de reservas, entre
+otras. La base de datos también se emplea para analizar las interacciones entre usuarios, equipos y eventos deportivos, con el objetivo de
+mejorar continuamente la experiencia del usuario. Con un enfoque en la eficiencia operativa y la excelencia en el servicio, el sistema busca 
+proporcionar una gestión óptima de los espacios deportivos, fomentando así la participación en actividades deportivas y promoviendo una cultura 
+saludable y activa.
 
-Estados_Reservas: Define los posibles estados de una reserva (por ejemplo, pendiente, confirmada, cancelada).
-Reservas_Historial: Registra el historial de reservas, incluyendo detalles como la fecha, hora y estado de las reservas anteriores.
-Reviews: Permite a los usuarios dejar reseñas y calificaciones sobre las canchas utilizadas.
-Pagos: Gestiona los pagos realizados por los usuarios por las reservas.
-Notificaciones: Permite enviar mensajes y notificaciones a los usuarios.
-Tarifas: Define las tarifas asociadas a las reservas de las canchas.
-
-Uso de SQL:
-
+HERRAMIENTAS / TECNOLOGIA
 El sistema utiliza SQL (Structured Query Language) para realizar consultas y manipular los datos almacenados en la base de datos,
 lo que permite a los usuarios realizar una variedad de operaciones, como buscar canchas disponibles, realizar reservas, revisar el
 historial de reservas y dejar reseñas.
 La base de datos utiliza claves primarias, claves foráneas y otros tipos de restricciones para mantener la integridad de los datos
 y establecer relaciones entre las diferentes entidades.
 
-Conclusion:
-
-En resumen, nuestra base de datos proporciona una solución completa para la gestión de reservas deportivas, ofreciendo a los
-usuarios una plataforma fácil de usar y eficiente para organizar sus actividades deportivas.
 
 
 
