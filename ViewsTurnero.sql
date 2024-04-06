@@ -1,11 +1,11 @@
 -- VIEW DE USUARIOS CON MAS DE 1 EQUIPO
 DROP VIEW IF EXISTS UsuariosConMasDeUnEquipo;
 CREATE VIEW UsuariosConMasDeUnEquipo AS
-SELECT Usuarios.apellido, Usuarios.nombre, Equipos.nombre_equipo
+SELECT Usuarios.apellido, Usuarios.nombre, GROUP_CONCAT(Equipos.nombre_equipo) AS equipos
 FROM Usuarios
 JOIN Usuarios_Equipos ON Usuarios.id_usuario = Usuarios_Equipos.id_usuario
 JOIN Equipos ON Usuarios_Equipos.id_equipo = Equipos.id_equipo
-GROUP BY Usuarios.id_usuario, Usuarios.nombre, Usuarios.apellido
+GROUP BY Usuarios.apellido, Usuarios.nombre
 HAVING COUNT(Usuarios_Equipos.id_equipo) > 1
 ORDER BY Usuarios.apellido ASC, Usuarios.nombre ASC;
 
