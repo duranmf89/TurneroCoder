@@ -1,0 +1,23 @@
+Instalación paso a paso del Proyecto Canchita. 
+Base de datos: turnero
+
+Abrir y ejecutar los archivos .sql de manera separada y en orden. 
+
+1-crear-esquema.sql (al ejecutar este archivo crearemos el esquema turnero)
+
+2-crear-tablas.sql (al ejecutar este archivos se crearan todas las tablas referidas a la base de datos)
+
+3-crear-views.sql (al ejecutar este archivo crearemos las vistas, al archivo esta comentado que es lo que proporciona cada una de ellas)
+
+4-crear-funciones.sql (al ejecutar este archivo crearemos las funciones. Al abrir el archivo, podrás ver comentado que es lo que proporciona cada función)
+
+5-crear-stored-procedures.sql (al ejecutar este archivo se crearan los procedimientos almacenados. Al abrir el archivo, podrás ver comentado que es lo que proporciona cada procedimiento)
+
+6-crear-triggers.sql (al ejecutar este archivo se crearan los disparadores tablas correspondientes que almacenan la información en caso de que estos disparadores requieran su uso)
+
+7-inserts-turnero.sql (al ejecutar este archivo se generará la inserción de los datos de prueba del proyecto, podras ver reflejado en la tabla logGeneral la trazabilidad de creacion de usuarios por ejemplo)
+
+8-DCL.sql (al ejecutar este archivo se crearan dos usuarios para la administración de la base de datos, uno de lectura o otro de escritura limitada)
+
+9-backUp-turnero.sql (este archivo tiene backUp de la estructura y datos de prueba que insertamos en el paso 7)
+
