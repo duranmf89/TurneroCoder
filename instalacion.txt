@@ -19,5 +19,5 @@ Abrir y ejecutar los archivos .sql de manera separada y en orden.
 
 8-DCL.sql (al ejecutar este archivo se crearan dos usuarios para la administración de la base de datos, uno de lectura o otro de escritura limitada)
 
-9-backUp-turnero.sql (este archivo tiene backUp de la estructura y datos de prueba que insertamos en el paso 7)
+backUp-turnero.sql (este archivo tiene backUp de la estructura y datos de prueba que insertamos en el paso 7)
 
